@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, computed } from 'vue'
 import { usePostsStore } from '@/stores/posts'
-import { NDataTable, NLayout, NSpace, NButton, NInput } from 'naive-ui'
+import { NDataTable, NSpace, NButton, NInput } from 'naive-ui'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -73,22 +73,20 @@ onMounted(() => {
 </script>
 
 <template>
-  <n-layout content-class="p-6">
-    <div v-if="postsStore.loading">Loading...</div>
+  <div v-if="postsStore.loading" class="loading">Loading...</div>
 
-    <div v-else>
-      <n-space vertical :size="12">
-        <n-space>
-          <n-input v-model:value="search" type="text" placeholder="Search" round />
-          <n-button @click="refresh">Clear</n-button>
-        </n-space>
-        <n-data-table
-          :columns="columns"
-          :data="filterPosts"
-          :row-props="rowProps"
-          :pagination="paginationReactive"
-        />
+  <div v-else>
+    <n-space vertical :size="12">
+      <n-space>
+        <n-input v-model:value="search" type="text" placeholder="Search" round />
+        <n-button @click="refresh">Clear</n-button>
       </n-space>
-    </div>
-  </n-layout>
+      <n-data-table
+        :columns="columns"
+        :data="filterPosts"
+        :row-props="rowProps"
+        :pagination="paginationReactive"
+      />
+    </n-space>
+  </div>
 </template>
