@@ -7,20 +7,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      redirect: '/posts',
-      component: Posts,
-      children: [
-        {
-          path: 'posts',
-          name: 'posts',
-          component: Posts
-        },
-        {
-          path: 'posts/:id',
-          name: 'post',
-          component: () => import('../views/Post.vue')
-        }
-      ]
+      component: () => import('@/views/Posts.vue')
+    },
+    {
+      path: '/post/:id',
+      name: 'ViewPost',
+      component: () => import('@/views/View.vue')
     }
   ]
 })

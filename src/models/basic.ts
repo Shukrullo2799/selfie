@@ -11,3 +11,7 @@ export interface IComment {
   email: string
   body: string
 }
+export interface IColumn {
+  key: string
+  title: string
+}
